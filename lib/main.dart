@@ -20,6 +20,35 @@ class _QuoteListState extends State<QuoteList> {
     Quote(text: 'He who has a why to live can bear almost any how.' ,author: 'Friedrich Nietzsche'),
   ];
 
+  Widget quoteTamplate(quote){
+    return Card(
+      margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
+
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Text(
+              quote.text,
+              style: TextStyle(
+                fontSize: 14.0,
+                color: Colors.grey[600],
+              ) ,
+          ),
+          SizedBox(height: 6.0 ),
+          Text(
+            quote.author,
+            style: TextStyle(
+              fontSize: 14.0,
+              color: Colors.grey[800]
+            ),
+          ),
+
+        ],
+      ),
+
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +60,7 @@ class _QuoteListState extends State<QuoteList> {
         backgroundColor: Colors.redAccent,
       ),
       body: Column(
-        children: quotes.map((quote) =>Text('${quote.text} - ${quote.author}')).toList(),
+        children: quotes.map((quote) => quoteTamplate(quote)).toList(),
       ),
     );
   }
