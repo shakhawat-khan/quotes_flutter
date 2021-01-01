@@ -43,6 +43,11 @@ class _QuoteListState extends State<QuoteList> {
             ),
           ),
 
+          SizedBox(height: 8.0,),
+          FlatButton.icon(onPressed: () {},
+              icon: Icon(Icons.delete),
+              label: Text('delete quote'))
+
         ],
       ),
 
