@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'quote.dart';
+import 'quote_card.dart';
 
 void main() {
   runApp(MaterialApp(
     home: QuoteList(),
   ));
 }
+
+
 
 class QuoteList extends StatefulWidget {
   @override
@@ -20,39 +23,6 @@ class _QuoteListState extends State<QuoteList> {
     Quote(text: 'He who has a why to live can bear almost any how.' ,author: 'Friedrich Nietzsche'),
   ];
 
-  Widget quoteTamplate(quote){
-    return Card(
-      margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
-
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Text(
-              quote.text,
-              style: TextStyle(
-                fontSize: 14.0,
-                color: Colors.grey[600],
-              ) ,
-          ),
-          SizedBox(height: 6.0 ),
-          Text(
-            quote.author,
-            style: TextStyle(
-              fontSize: 14.0,
-              color: Colors.grey[800]
-            ),
-          ),
-
-          SizedBox(height: 8.0,),
-          FlatButton.icon(onPressed: () {},
-              icon: Icon(Icons.delete),
-              label: Text('delete quote'))
-
-        ],
-      ),
-
-    );
-  }
 
 
   @override
@@ -65,9 +35,17 @@ class _QuoteListState extends State<QuoteList> {
         backgroundColor: Colors.redAccent,
       ),
       body: Column(
-        children: quotes.map((quote) => quoteTamplate(quote)).toList(),
+        children: quotes.map((quote) => QuoteCard(
+            quote : quote,
+            delete: (){
+              setState(() {
+                quotes.remove(quote);
+              });
+            }
+        )).toList(),
       ),
     );
   }
 }
+
 
